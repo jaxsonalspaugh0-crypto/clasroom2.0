@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>School Arcade</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">School Arcade</div>
+    <input id="search" class="search" placeholder="Search games..." aria-label="Search games" />
+  </header>
+
+  <main id="app">
+    <section class="grid" id="gameGrid" aria-live="polite"></section>
+  </main>
+
+  <nav class="footer">
+    <button id="shuffleBtn" title="Shuffle games">Shuffle</button>
+    <button id="favoritesBtn" title="Favorites">Favorites</button>
+    <button id="publishBtn" title="Publish & share">Publish & share</button>
+  </nav>
+
+  <template id="cardTpl">
+    <article class="card">
+      <div class="thumb"></div>
+      <div class="meta">
+        <div class="title"></div>
+        <div class="desc"></div>
+      </div>
+      <div class="signature" aria-hidden="true">
+        <img class="sig-logo" alt="" />
+        <div class="sig-text"></div>
+      </div>
+      <div class="actions">
+        <a class="play" href="#" rel="noopener">Play</a>
+        <button class="fav" aria-label="Toggle favorite">☆</button>
+      </div>
+    </article>
+  </template>
+
+  <!-- fullscreen in-site player overlay -->
+  <div id="playerOverlay" aria-hidden="true">
+    <div class="player-wrap" role="dialog" aria-label="Game player">
+      <button id="closePlayer" aria-label="Close player">✕</button>
+      <iframe id="playerFrame" src="about:blank" frameborder="0" allow="fullscreen; autoplay; clipboard-read; clipboard-write" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Publish modal (non-bypass guidance) -->
+  <div id="publishModal" aria-hidden="true" class="modal">
+    <div class="modal-content" role="dialog" aria-label="Publish and share">
+      <button id="closePublish" class="modal-close" aria-label="Close">✕</button>
+      <h3>Publish & share</h3>
+      <p>To make this site discoverable and accessible via Google, publish it to a public host such as GitHub Pages or Netlify. Below is a sample public URL you can copy after publishing.</p>
+      <label for="publishUrl">Public URL</label>
+      <div class="urlRow">
+        <input id="publishUrl" readonly value="https://your-username.github.io/your-repo/" />
+        <button id="copyUrl">Copy</button>
+      </div>
+      <ul class="publishSteps">
+        <li>1. Push the site files (index.html, games.js, styles.css) to a GitHub repo.</li>
+        <li>2. Enable GitHub Pages for the repo (Settings → Pages → deploy from main branch).</li>
+        <li>3. Wait a few minutes, then paste the public URL into Google Search Console to help indexing.</li>
+      </ul>
+      <p class="note">This modal provides safe hosting guidance — it does not bypass any school or network filters.</p>
+    </div>
+  </div>
+
+  <script src="games.js" type="module"></script>
+</body>
+</html>
